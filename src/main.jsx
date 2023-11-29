@@ -1,10 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import './index.css'
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+const myServerClientContainer = new ApolloClient({
+  uri:"http://localhost:4200/",
+  cache:new InMemoryCache(),
+})
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <ApolloProvider client={myServerClientContainer}>
+      <App />
+    </ApolloProvider>
+  </React.StrictMode>
+);

@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+tbody, thead, th, td{
+    border: 1px solid black;
+}
+
+th{
+    color: aliceblue;
+}
+td,th{
+    padding: 0px 8px;
+}
