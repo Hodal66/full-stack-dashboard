@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/all-messages" element={<AllMessages />} />
           <Route exact path="/all-posts" element={<AllPosts />} />
-          <Route exact path="/posts/:postId" element={<GetOnePost />} />
+          <Route exact path="/posts/:ID" element={<GetOnePost />} />
         </Routes>
       </BrowserRouter>
     </>

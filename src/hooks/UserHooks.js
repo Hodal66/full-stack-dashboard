@@ -5,6 +5,7 @@ const usersContainer = gql`
 
 query GetAllUsers {
   getAllUsers {
+    id
     ages
     confirmPassword
     createdAt

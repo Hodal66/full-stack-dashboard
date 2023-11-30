@@ -1,7 +1,12 @@
 import DashboardHeader from "../../componets/DashboardHeader";
 import Sidebar from "../../componets/Sidebar";
+import { getAllMessagesHook } from "../../hooks/MessagesHook";
 
 function AllMessages() {
+  const { loading, data, error } = getAllMessagesHook();
+  if (loading) return "Data is Loading....";
+  if (error) return "Error Something is wrong!!";
+  console.log(data);
   return (
     <div>
       <div className="h-screen bg-blue-50">
@@ -23,31 +28,36 @@ function AllMessages() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>001</td>
-                  <td>27/11/2023</td>
-                  <td>Muheto Hodal</td>
-                  <td>mhthodol@gmail.com</td>
-    
-                  <td colSpan={3} className="flex gap-4 ">
-                    <div className="cursor-pointer text-green-400">
-                      <button className="hover:bg-green-900 hover:rounded-sm px-2">
-                        View
-                      </button>
-                    </div>
-                    <div className="cursor-pointer text-yellow-400">
-                      <button className="hover:bg-yellow-900 hover:rounded-sm px-2">
-                        Edit
-                      </button>
-                    </div>
-                    <div className="cursor-pointer text-red-400">
-                      {" "}
-                      <button className="hover:bg-red-800 hover:rounded-sm px-2">
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+                {data &&
+                  data.getMessages.map((message) => {
+                    return (
+                      <tr key={message.id}>
+                        <td>{message.id}</td>
+                        <td>{message.createdAt}</td>
+                        <td>{message.title}</td>
+                        <td>{message.author}</td>
+
+                        <td colSpan={3} className="flex gap-4 ">
+                          <div className="cursor-pointer text-green-400">
+                            <button className="hover:bg-green-900 hover:rounded-sm px-2">
+                              View
+                            </button>
+                          </div>
+                          <div className="cursor-pointer text-yellow-400">
+                            <button className="hover:bg-yellow-900 hover:rounded-sm px-2">
+                              Edit
+                            </button>
+                          </div>
+                          <div className="cursor-pointer text-red-400">
+                            {" "}
+                            <button className="hover:bg-red-800 hover:rounded-sm px-2">
+                              Delete
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>

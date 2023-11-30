@@ -1,18 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DashboardHeader from "../../componets/DashboardHeader";
 import Sidebar from "../../componets/Sidebar";
-import { myPostHookContainer } from "../../hooks/OnePostHook";
+import { gql, useLazyQuery } from "@apollo/client";
+
+const GET_ONE_POST = gql`
+  query GetOneMessage($postId: ID!) {
+    getOneMessage(ID: $postId) {
+      title
+      id
+      createdAt
+      author
+    }
+  }
+`;
 
 function GetOnePost() {
-  const { error, loading, data } = myPostHookContainer(6);
-  console.log("My Result is::",loading,myPostHookContainer(6));
-  if (error)
-    return (
-      <div className="flex justify-center pt-28 items-center text-red-500">
-        <p>There might be an Error</p>
-      </div>
-    );
-  if (loading) return  <div className="flex justify-center items-center  pt-28 text-blue-500">Data is now Loading</div>;
+  let param = useParams();
+  const  dataToBeFetched = useLazyQuery(GET_ONE_POST,{
+    variables:{
+      postId:param.ID
+    }
+  });
+
+  console.log(dataToBeFetched);
+ 
+  console.log(param.ID);//
+
 
   return (
     <div>
@@ -33,7 +46,7 @@ function GetOnePost() {
               <div>
                 <p className="font-extrabold text-2xl text-blue-950 p-4">
                   We Have ID:{" "}
-                  <span className="font-normal text-blue-500">{data.id}</span>
+                  <span className="font-normal text-blue-500">{param.ID}</span>
                 </p>
                 <p className="font-extrabold text-2xl text-blue-950 p-4">
                   Main Title:{" "}

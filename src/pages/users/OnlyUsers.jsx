@@ -30,16 +30,16 @@ function OnlyUsers() {
               </thead>
               <tbody>
                 {data &&
-                  data.getAllUsers.map((user) => {
+                  data.getAllUsers.map(({fullName,email,ages,sex,id}) => {
                     return (
-                      <tr key={user.email}>
-                        <td>{user.id} {console.log("My User Id Is::: "+user.id)}</td>
-                        <td>{user.fullName}</td>
-                        <td>{user.email}</td>
-                        <td>{user.ages}</td>
-                        <td>{user.sex}</td>
+                      <tr key={email}>
+                        <td>{id} {console.log("My User Id Is::: "+id)}</td>
+                        <td>{fullName}</td>
+                        <td>{email}</td>
+                        <td>{ages}</td>
+                        <td>{sex}</td>
                         <td colSpan={3} className="flex gap-4 ">
-                         <Link to={`/users/${user.email}`}>
+                         <Link to={`/users/${id}`}>
                          <div className="cursor-pointer text-green-400">
                             <button className="hover:bg-green-900 hover:rounded-sm px-2">
                               View
