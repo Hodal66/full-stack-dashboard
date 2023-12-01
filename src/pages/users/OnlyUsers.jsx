@@ -16,7 +16,15 @@ function OnlyUsers() {
             <Sidebar />
           </div>
           <div className="p-8  h-screen col-span-9">
-            <h1>Only Users </h1>
+            <div className="flex gap-12 py-8">
+              {" "}
+              <h1>Only Users </h1>
+              <Link to={"/users/create-user"}>
+                <button className="bg-green-500 p-2 rounded-md hover:bg-green-300 ">
+                  Create New User
+                </button>
+              </Link>
+            </div>
             <table>
               <thead className="bg-blue-500">
                 <tr>
@@ -30,22 +38,24 @@ function OnlyUsers() {
               </thead>
               <tbody>
                 {data &&
-                  data.getAllUsers.map(({fullName,email,ages,sex,id}) => {
+                  data.getAllUsers.map(({ fullName, email, ages, sex, id }) => {
                     return (
                       <tr key={email}>
-                        <td>{id} {console.log("My User Id Is::: "+id)}</td>
+                        <td>
+                          {id} {console.log("My User Id Is::: " + id)}
+                        </td>
                         <td>{fullName}</td>
                         <td>{email}</td>
                         <td>{ages}</td>
                         <td>{sex}</td>
                         <td colSpan={3} className="flex gap-4 ">
-                         <Link to={`/users/${id}`}>
-                         <div className="cursor-pointer text-green-400">
-                            <button className="hover:bg-green-900 hover:rounded-sm px-2">
-                              View
-                            </button>
-                          </div>
-                         </Link>
+                          <Link to={`/users/${id}`}>
+                            <div className="cursor-pointer text-green-400">
+                              <button className="hover:bg-green-900 hover:rounded-sm px-2">
+                                View
+                              </button>
+                            </div>
+                          </Link>
                           <div className="cursor-pointer text-yellow-400">
                             <button className="hover:bg-yellow-900 hover:rounded-sm px-2">
                               Edit

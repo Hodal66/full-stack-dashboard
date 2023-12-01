@@ -9,15 +9,19 @@ import AllMessages from './pages/messages/AllMessages';
 import User from './pages/users/User';
 import AllPosts from './pages/postPage/AllPosts';
 import GetOnePost from './pages/postPage/GetOnePost';
+import CreateUserByAdmin from './pages/users/CreateUserByAdmin';
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
+          
           <Route path="/users" element={<AllUsers />} />
           <Route path="/only-users" element={<OnlyUsers />} />
           <Route path="/users/:userID" element={<User/>} />
+          <Route path="/users/create-user" element={<CreateUserByAdmin/>} />
+           
           <Route exact path="/register-user" element={<Register/>} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/all-messages" element={<AllMessages />} />
